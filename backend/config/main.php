@@ -17,9 +17,19 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'backend\models\AdminUser',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+        ],
+        'shopwower'=>[
+            'class'=>'yii\web\User',
+            'identityClass' => 'app\models\SchoolUser',
+            'enableAutoLogin' => false,
+            'authTimeout' => 60*30,
+            'loginUrl' => ['dashboard-school/login'],
+            'identityCookie' => [
+                'name' => '_panelSchool',
+            ]	
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -37,14 +47,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];

@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\ShopownersQuery */
+/* @var $searchModel frontend\modules\shopowner\models\ShopsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Shopowners';
+$this->title = 'Shops';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="shopowners-index">
+<div class="shops-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Shopowners', ['/shopowners/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Shops', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,19 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'shopid',
             'shopownerid',
-            'firstname',
-            'middlename',
-            'lastname',
-            'username',
-            //'password_hash',
-            //'password_reset_token',
-            //'verification_token',
-            //'email:email',
-            //'auth_key',
-            //'status',
-            //'created_at',
-            //'updated_at',
+            'shopname',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

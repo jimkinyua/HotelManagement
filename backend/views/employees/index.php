@@ -4,34 +4,33 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\ShopownersQuery */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Shopowners';
+$this->title = 'Employees';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="shopowners-index">
+<div class="employees-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Shopowners', ['/shopowners/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Employees', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'shopownerid',
+            'employeeid',
             'firstname',
             'middlename',
             'lastname',
-            'username',
+            'usergroup',
+            //'username',
+            //'shopid',
             //'password_hash',
             //'password_reset_token',
             //'verification_token',
@@ -40,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'status',
             //'created_at',
             //'updated_at',
+            //'roleid',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

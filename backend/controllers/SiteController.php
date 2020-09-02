@@ -5,7 +5,10 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use backend\models\AdminLoginForm;
+use backend\models\SignupForm;
+use backend\models\Shopowners;
+use backend\models\ShopownersQuery;
 
 /**
  * Site controller
@@ -22,7 +25,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'signup'],
                         'allow' => true,
                     ],
                     [
@@ -60,7 +63,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return Yii::$app->response->redirect(['shopowners']);
+
+        // $searchModel = new ShopownersQuery();
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        // return $this->render('index', [
+        //     'searchModel' => $searchModel,
+        //     'dataProvider' => $dataProvider,
+        // ]);
+    
     }
 
     /**
@@ -74,9 +86,11 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            // $this->$defaultRoute = 'shopowners';
+            return Yii::$app->response->redirect(['shopowners/index']);
+            // return $this->goBack();
         } else {
             $model->password = '';
 
@@ -84,6 +98,24 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+     /**
+     * Signs Admin up.
+     *
+     * @return mixed
+     */
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            return $this->goHome();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 
     /**
