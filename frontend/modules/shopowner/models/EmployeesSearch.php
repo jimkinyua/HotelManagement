@@ -18,7 +18,7 @@ class EmployeesSearch extends Employees
     {
         return [
             [['employeeid', 'shopid', 'status', 'created_at', 'updated_at', 'roleid'], 'integer'],
-            [['firstname', 'middlename', 'lastname', 'usergroup', 'username', 'password_hash', 'password_reset_token', 'verification_token', 'email', 'auth_key'], 'safe'],
+            [['firstname', 'middlename', 'lastname', 'username', 'password_hash', 'password_reset_token', 'verification_token', 'email', 'auth_key'], 'safe'],
         ];
     }
 
@@ -69,7 +69,7 @@ class EmployeesSearch extends Employees
         $query->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'middlename', $this->middlename])
             ->andFilterWhere(['like', 'lastname', $this->lastname])
-            ->andFilterWhere(['like', 'usergroup', $this->usergroup])
+            // ->andFilterWhere(['like', 'usergroup', $this->usergroup])
             ->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])

@@ -66,7 +66,8 @@ class RoomController extends Controller
     {
         $model = new Room();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->roomid]);
         }
 

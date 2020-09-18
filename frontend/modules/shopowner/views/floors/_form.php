@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\modules\shopowner\models\Shops;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\shopowner\models\Floors */
@@ -16,7 +18,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'floorcode')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'shopid')->textInput() ?>
+    <?=  $form->field($model, 'shopid')
+        ->dropDownList(
+            ArrayHelper::map(Shops::find()->asArray()->all(), 'shopid', 'shopname'),
+            ['prompt'=>'Select a Shop'] 
+        );
+
+    ?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

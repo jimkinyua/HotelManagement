@@ -45,9 +45,9 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             'roomid' => 'Roomid',
-            'roomname' => 'Roomname',
-            'maxtables' => 'Maxtables',
-            'floorid' => 'Floorid',
+            'roomname' => 'Name of the Room',
+            'maxtables' => 'Max Number of Tables this Room can Accomodate?',
+            'floorid' => 'Floor in Which the Room is in',
         ];
     }
 

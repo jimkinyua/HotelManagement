@@ -5,6 +5,7 @@ namespace frontend\modules\shopowner\controllers;
 use Yii;
 use frontend\modules\shopowner\models\Employees;
 use frontend\modules\shopowner\models\EmployeesSearch;
+use frontend\modules\shopowner\models\EmployeeSignUpForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,11 +63,24 @@ class EmployeesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    // public function actionCreate()
+    // {
+    //     $model = new EmployeeSignUpForm();
+
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->employeeid]);
+    //     }
+
+    //     return $this->render('create', [
+    //         'model' => $model,
+    //     ]);
+    // }
+
     public function actionCreate()
     {
-        $model = new Employees();
+        $model = new EmployeeSignUpForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             return $this->redirect(['view', 'id' => $model->employeeid]);
         }
 
@@ -74,6 +88,7 @@ class EmployeesController extends Controller
             'model' => $model,
         ]);
     }
+
 
     /**
      * Updates an existing Employees model.
@@ -85,10 +100,13 @@ class EmployeesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        // $model->password_hash= '';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->employeeid]);
-        }
+        // $SignUpModel = new EmployeeSignUpForm();
+        // if ($SignUpModel->load(Yii::$app->request->post())) {
+        //     $SignUpModel->signup();
+        //     return $this->redirect(['view', 'id' => $id]);
+        // }
 
         return $this->render('update', [
             'model' => $model,

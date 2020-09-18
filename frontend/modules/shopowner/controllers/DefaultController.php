@@ -17,7 +17,12 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+       
+        // return $this->redirect('/shopowner/default/login');
+
         if (!Yii::$app->shopowner->isGuest) {
+            return $this->redirect('/shopowner/employees/');
+
             return $this->goHome();
         }else{
             return $this->redirect('/shopowner/default/login');
@@ -30,12 +35,16 @@ class DefaultController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->shopowner->isGuest) {
-            return $this->goHome();
+            
+            // return $this->goHome();
+            return $this->redirect('/shopowner/employees/');
+
+            // return $this->goHome();
         }
 
          $model = new ShopOwnerLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            exit('Done!');
+            // exit('Done!');
             return $this->goBack();
         } else {
             $model->password = '';

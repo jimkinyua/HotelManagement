@@ -67,11 +67,7 @@ class ShopownersController extends Controller
     public function actionCreate()
     {
         $model = new ShopOwnerSignUpForm();
-        // echo '<pre>';
-        // print_r($model);
-        // exit;
-
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             return $this->redirect(['view', 'id' => $model->shopownerid]);
         }

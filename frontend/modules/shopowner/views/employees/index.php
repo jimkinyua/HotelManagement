@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'firstname',
             'middlename',
             'lastname',
-            'usergroup',
+            // 'usergroup',
             //'username',
             //'shopid',
             //'password_hash',
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'status',
             //'created_at',
             //'updated_at',
-            //'roleid',
+            'roleid',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

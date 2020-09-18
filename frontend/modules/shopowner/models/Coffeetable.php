@@ -46,10 +46,10 @@ class Coffeetable extends \yii\db\ActiveRecord
     {
         return [
             'tableid' => 'Tableid',
-            'tablename' => 'Tablename',
-            'tablecode' => 'Tablecode',
-            'totalseats' => 'Totalseats',
-            'roomid' => 'Roomid',
+            'tablename' => 'Name of the Table',
+            'tablecode' => 'Table Code',
+            'totalseats' => 'Max Number of Seats the Table Can Accomodate',
+            'roomid' => 'Room Where the Table is Located',
         ];
     }
 

@@ -44,10 +44,10 @@ class Floors extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'floorid' => 'Floorid',
-            'floorname' => 'Floorname',
-            'floorcode' => 'Floorcode',
-            'shopid' => 'Shopid',
+            // 'floorid' => 'Floorid',
+            'floorname' => 'Name of the Floor',
+            'floorcode' => 'Floor Code',
+            'shopid' => 'Shop Name',
         ];
     }
 

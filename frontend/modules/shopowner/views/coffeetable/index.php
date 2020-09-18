@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel frontend\modules\shopowner\models\CoffeetableSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Coffeetables';
+$this->title = 'Tables';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="coffeetable-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Coffeetable', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Table', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

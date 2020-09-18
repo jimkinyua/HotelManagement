@@ -10,7 +10,7 @@ use yii\web\IdentityInterface;
 /**
  * User model
  *
- * @property integer $id
+ * @property integer $shopownerid
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
@@ -34,7 +34,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return '{{%shopowners}}';
     }
 
     /**
@@ -61,9 +61,9 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function findIdentity($shopownerid)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['shopownerid' => $shopownerid, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\shopowner\models\Coffeetable */
 
-$this->title = 'Create Coffeetable';
+$this->title = 'Create Table';
 $this->params['breadcrumbs'][] = ['label' => 'Coffeetables', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -18,7 +18,7 @@ class ShopOwnerSignUpForm extends Model
     public $lastname;
     public $status;
     public $shopownerid;
-
+    
 
     /**
      * {@inheritdoc}

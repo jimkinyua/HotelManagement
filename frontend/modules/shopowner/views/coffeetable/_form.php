@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use frontend\modules\shopowner\models\Room;
+use yii\helpers\ArrayHelper
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\shopowner\models\Coffeetable */
 /* @var $form yii\widgets\ActiveForm */
@@ -18,7 +19,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'totalseats')->textInput() ?>
 
-    <?= $form->field($model, 'roomid')->textInput() ?>
+    <?=  $form->field($model, 'roomid')
+        ->dropDownList(
+            ArrayHelper::map(Room::find()->asArray()->all(), 'roomid', 'roomname'),
+            ['prompt'=>'Select a Shop'] 
+        );
+
+    ?>
+
+    <!-- <?= $form->field($model, 'roomid')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

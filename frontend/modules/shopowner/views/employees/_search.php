@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'lastname') ?>
 
-    <?= $form->field($model, 'usergroup') ?>
+    
 
     <?php // echo $form->field($model, 'username') ?>
 
@@ -48,7 +48,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'updated_at') ?>
 
-    <?php // echo $form->field($model, 'roleid') ?>
+    <?php echo $form->field($model, 'roleid') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

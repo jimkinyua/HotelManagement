@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+
 /**
  * FloorsController implements the CRUD actions for Floors model.
  */
@@ -66,10 +67,13 @@ class FloorsController extends Controller
     {
         $model = new Floors();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+    
+            $model->save();
             return $this->redirect(['view', 'id' => $model->floorid]);
         }
 
+        // $Shops = ArrayHelper::map(Shops::find()->all(), 'shopid', 'shopname');
         return $this->render('create', [
             'model' => $model,
         ]);

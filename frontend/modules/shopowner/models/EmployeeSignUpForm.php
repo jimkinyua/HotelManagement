@@ -1,18 +1,26 @@
 <?php
-namespace frontend\models;
+namespace frontend\modules\shopowner\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use frontend\modules\shopowner\models\Employees;
 
 /**
  * Signup form
  */
-class SignupForm extends Model
+class EmployeeSignUpForm extends Model
 {
     public $username;
     public $email;
-    public $password;
+    public $password_hash;
+    public $firstname;
+    public $middlename;
+    public $lastname;
+    public $status;
+    public $usergroup;
+    public $shopid;
+    public $roleid;
+   
 
 
     /**
@@ -21,21 +29,27 @@ class SignupForm extends Model
     public function rules()
     {
         return [
+            ['firstname', 'required'],
+            ['lastname', 'required'],
+            ['shopid', 'required'],
+            [['roleid', 'middlename'], 'required'],
+
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => 'frontend\modules\shopowner\models\Employees', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'string', 'max' => 255], 
+            ['email', 'unique', 'targetClass' => 'frontend\modules\shopowner\models\Employees', 'message' => 'This email address has already been taken.'],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+            ['password_hash', 'required'],
+            ['password_hash', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
         ];
     }
+
 
     /**
      * Signs user up.
@@ -47,11 +61,16 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
-        $user = new User();
+        exit('qwq');
+        $user = new Employees();
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->setPassword($this->password);
+        $user->firstname =  $this->firstname;
+        $user->middlename = $this->middlename;
+        $user->lastname = $this->lastname;
+        $user->shopid = $this->shopid;
+        $user->roleid = $this->roleid;
+        $user->setPassword($this->password_hash);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         return $user->save() && $this->sendEmail($user);

@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\modules\shopowner\models\Floors;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\shopowner\models\Room */
@@ -16,7 +18,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'maxtables')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'floorid')->textInput() ?>
+    <?=  $form->field($model, 'floorid')
+        ->dropDownList(
+            ArrayHelper::map(Floors::find()->asArray()->all(), 'floorid', 'floorname'),
+            ['prompt'=>'Select a Floor'] 
+        );
+
+    ?>
+
+    
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -66,7 +66,12 @@ class ShopsController extends Controller
     {
         $model = new Shops();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->shopownerid = Yii::$app->shopowner->identity->id;
+            // echo '<pre>';
+            // print_r($model);
+            // exit;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->shopid]);
         }
 

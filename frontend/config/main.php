@@ -14,7 +14,7 @@ return [
     'modules' => [
         'shopowner' => [
             'class' => 'frontend\modules\shopowner\Module',
-            // 'defaultRoute' => '',
+            'defaultRoute' => 'shopowner/employees',
         ],
     ],
     'components' => [
@@ -22,14 +22,19 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
+            'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            'loginUrl' => ['site/login'],
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'shopowner' => [ //Identity Class For Shop Owner
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\ShopOwners',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            'loginUrl' => ['shopowner/default/login'],
+            'identityCookie' => ['name' => '_identity-frontend-shopowner', 'httpOnly' => true],
+
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
