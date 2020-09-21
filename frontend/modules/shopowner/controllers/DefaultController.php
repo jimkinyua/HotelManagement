@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\modules\shopowner\controllers;
-
+use backend\models\ShopOwnerSignUpForm;
 use yii\web\Controller;
 use Yii;
 use common\models\ShopOwnerLoginForm;
@@ -44,6 +44,8 @@ class DefaultController extends Controller
 
          $model = new ShopOwnerLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect('/shopowner/employees/');
+
             // exit('Done!');
             return $this->goBack();
         } else {
@@ -54,4 +56,32 @@ class DefaultController extends Controller
             ]);
         }
     }
+    public function actionSignUp()
+    {
+        $model = new ShopOwnerSignUpForm();
+        //exit('Hapa');
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', "Account Succesfully Created");
+            return $this->redirect('/shopowner/default/login');
+            //return $this->redirect(['view', 'id' => $model->shopownerid]);
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Logs out the current Shop Owner.
+     *
+     * @return mixed
+     */
+    public function actionLogout()
+    {
+        Yii::$app->shopowner->logout();
+        return $this->redirect('/shopowner/default/login');
+
+        //return $this->goHome();
+    }
+
 }

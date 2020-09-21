@@ -38,26 +38,28 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' =>'/shopowner/employees/',// Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
             'innerContainerOptions' => ['class' => 'container-fluid'],
 
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        // ['label' => 'About', 'url' => ['/site/about']],
-        // ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
+  
+    if (Yii::$app->shopowner->isGuest) {
         // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/shopowner/default/login']];
     } else {
+        $menuItems = [
+            ['label' => 'Home', 'url' => ['/shopowner/employees/']],
+            // ['label' => 'About', 'url' => ['/site/about']],
+            // ['label' => 'Contact', 'url' => ['/site/contact']],
+        ];
+
         $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
+            . Html::beginForm(['/shopowner/default/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Logout (' . Yii::$app->shopowner->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -83,6 +85,7 @@ AppAsset::register($this);
         <div class='col-lg-2' >
         
                 <?php
+                 if (!Yii::$app->shopowner->isGuest) {
                     echo SideNav::widget([
                         'type' => SideNav::TYPE_PRIMARY,
                         'heading' => 'Options',
@@ -127,6 +130,7 @@ AppAsset::register($this);
                             // ],
                         ],
                     ]);
+                 }
                 ?>
         </div>
         <?= Breadcrumbs::widget([
